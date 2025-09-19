@@ -20,6 +20,7 @@ import CasinoGames from './pages/CasinoGames';
 import GamingWallet from './pages/GamingWallet';
 import GameHistory from './pages/GameHistory';
 import NFTMarketplace from './pages/NFTMarketplace';
+import Leaderboard from './pages/Leaderboard';
 import Analytics from './pages/Analytics';
 import Education from './pages/Education';
 import Profile from './pages/Profile';
@@ -86,6 +87,8 @@ const App: React.FC = () => {
                         <Route path="/gaming/casino" element={<CasinoGames />} />
                         <Route path="/gaming/wallet" element={<GamingWallet />} />
                         <Route path="/gaming/history" element={<GameHistory />} />
+                        <Route path="/gaming/leaderboard" element={<Leaderboard />} />
+                        <Route path="/leaderboard" element={<Leaderboard />} />
                         <Route path="/nft-marketplace" element={<NFTMarketplace />} />
                         <Route path="/analytics" element={<Analytics />} />
                         <Route path="/education" element={<Education />} />

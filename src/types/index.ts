@@ -203,8 +203,24 @@ export interface UserEarnings {
   availableBalance: number;
   completedTasks: number;
   currentStreak: number;
+  longestStreak: number;
   level: number;
   xp: number;
+  xpToNextLevel: number;
+  streakRewards: {
+    day: number;
+    currency: 'BTC' | 'ETH' | 'VEST';
+    amount: number;
+    claimed: boolean;
+  }[];
+  achievements: Achievement[];
+  badges: ('vip' | 'whale' | 'winner' | 'streaker' | 'explorer')[];
+  tier: 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
+  lastCheckIn: string;
+  checkInReward: {
+    currency: 'BTC' | 'ETH' | 'VEST';
+    amount: number;
+  };
 }
 
 // Gaming System Types
@@ -479,6 +495,47 @@ export interface LeaderboardEntry {
   score: number;
   change: number; // position change
   period: 'daily' | 'weekly' | 'monthly' | 'all_time';
+  level: number;
+  xp: number;
+  totalEarned: {
+    BTC: number;
+    ETH: number;
+    VEST: number;
+  };
+  streak: number;
+  achievements: number;
+  gamesPlayed: number;
+  winRate: number;
+  totalWagered: number;
+  netProfit: number;
+  joinedDate: string;
+  lastActive: string;
+  badges: ('vip' | 'whale' | 'winner' | 'streaker' | 'explorer')[];
+  tier: 'bronze' | 'silver' | 'gold' | 'platinum' | 'diamond';
+}
+
+export interface UserLevel {
+  level: number;
+  xp: number;
+  xpRequired: number;
+  title: string;
+  rewards: {
+    currency: 'BTC' | 'ETH' | 'VEST';
+    amount: number;
+  }[];
+  perks: string[];
+}
+
+export interface DailyStreak {
+  currentStreak: number;
+  longestStreak: number;
+  lastCheckIn: string;
+  streakRewards: {
+    day: number;
+    currency: 'BTC' | 'ETH' | 'VEST';
+    amount: number;
+    claimed: boolean;
+  }[];
 }
 
 // NFT Marketplace Types

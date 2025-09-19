@@ -24,6 +24,7 @@ import {
   Shield,
   Gamepad2,
   Palette,
+  Trophy,
 } from 'lucide-react';
 
 interface NavItem {
@@ -48,6 +49,7 @@ const Navigation: React.FC = () => {
     { icon: Zap, label: 'Staking', path: '/staking' },
     { icon: Coins, label: 'Earn', path: '/earn' },
     { icon: Gamepad2, label: 'Gaming', path: '/gaming' },
+    { icon: Trophy, label: 'Leaderboard', path: '/leaderboard' },
     { icon: Palette, label: 'NFT Market', path: '/nft-marketplace' },
     { icon: BarChart3, label: 'Analytics', path: '/analytics' },
     { icon: BookOpen, label: 'Learn', path: '/education' },
@@ -104,7 +106,7 @@ const Navigation: React.FC = () => {
                   >
                     <item.icon className="w-4 h-4" />
                     <span className="font-medium hidden xl:inline">{item.label}</span>
-                    {(item.path === '/vesting' || item.path === '/staking' || item.path === '/earn' || item.path === '/gaming' || item.path === '/nft-marketplace') && (
+                    {(item.path === '/vesting' || item.path === '/staking' || item.path === '/earn' || item.path === '/gaming' || item.path === '/nft-marketplace' || item.path === '/leaderboard') && (
                       <span className="bg-crypto-500 text-white text-xs px-1 py-0.5 rounded-full hidden xl:inline">NEW</span>
                     )}
                   </motion.div>

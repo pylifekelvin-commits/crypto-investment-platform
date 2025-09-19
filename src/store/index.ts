@@ -23,6 +23,7 @@ import {
   SportsBet,
   PredictionBet,
   GameTransaction,
+  Achievement,
 } from '../types';
 
 interface AppStore extends AppState {
@@ -65,6 +66,10 @@ interface AppStore extends AppState {
   placePredictionBet: (bet: PredictionBet) => void;
   setGamingStats: (stats: GamingStats) => void;
   setLeaderboard: (leaderboard: LeaderboardEntry[]) => void;
+  updateUserRank: (userId: string, rankData: Partial<LeaderboardEntry>) => void;
+  updateUserLevel: (userId: string, level: number, xp: number) => void;
+  updateUserStreak: (userId: string, streak: number) => void;
+  awardAchievement: (userId: string, achievement: Achievement) => void;
   
   // Market data actions
   updateCryptoPrices: (prices: Record<string, CryptoPriceData>) => void;
@@ -117,6 +122,13 @@ export const useAppStore = create<AppStore>((set, get) => ({
   predictionMarkets: [],
   gamingStats: null,
   leaderboard: [],
+  
+  // NFT Marketplace state
+  nfts: [],
+  userNFTs: [],
+  collections: [],
+  activeAuctions: [],
+  nftActivities: [],
   
   cryptoPrices: {},
   marketTrends: [],
@@ -316,4 +328,31 @@ export const useAppStore = create<AppStore>((set, get) => ({
   setGamingStats: (gamingStats) => set({ gamingStats }),
   
   setLeaderboard: (leaderboard) => set({ leaderboard }),
+  
+  updateUserRank: (userId, rankData) => set((state) => ({
+    leaderboard: state.leaderboard.map(entry => 
+      entry.userId === userId ? { ...entry, ...rankData } : entry
+    )
+  })),
+  
+  updateUserLevel: (userId, level, xp) => set((state) => ({
+    gamingStats: state.gamingStats && state.gamingStats.userId === userId ? {
+      ...state.gamingStats,
+      level,
+      xp
+    } : state.gamingStats
+  })),
+  
+  updateUserStreak: (userId, streak) => set((state) => ({
+    leaderboard: state.leaderboard.map(entry => 
+      entry.userId === userId ? { ...entry, streak } : entry
+    )
+  })),
+  
+  awardAchievement: (userId, achievement) => set((state) => ({
+    gamingStats: state.gamingStats && state.gamingStats.userId === userId ? {
+      ...state.gamingStats,
+      achievements: [...state.gamingStats.achievements, achievement]
+    } : state.gamingStats
+  })),
 }));
